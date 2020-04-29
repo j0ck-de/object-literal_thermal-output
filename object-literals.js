@@ -37,12 +37,10 @@ const thermalOutputCalculator = {
     this.USER_VALUES.heatValue = +this.getDOM("heatValue").value;
     this.USER_VALUES.heatExponent = +this.getDOM("heatExponent").value;
 
-    console.log(typeof this.USER_VALUES.heatExponent);
-
     const getTemperatureDifference = function (heatFlow, heatReturn, heatTemperature) {
       return (
         (heatFlow - heatReturn) /
-        Math.log((heatFlow - heatTemperature) / (heatReturn - heatTemperature))
+        Math.log((heatFlow - heatTemperature) / (heatReturn - heatTemperature)) || 0 // || 0 fixes NaN in the calculation
       );
     };
 
